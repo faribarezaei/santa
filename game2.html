@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Page</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+     
+        /* Center the button container */
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Style the button */
+        #next-button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    
+    <!-- Centered button container -->
+    <div class="button-container">
+        <button id="next-button">Next</button>
+    </div>
+
+    <script>
+        const nextButton = document.getElementById('next-button');
+        
+        nextButton.addEventListener('click', () => {
+            window.location.href = 'game2.html'; // Change 'merry.html' to your desired destination
+        });
+    </script>
+</body>
+</html>

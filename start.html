@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Guessing Game</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+
+        body {
+            background-color: #181b35;
+            font-family: 'Arial', sans-serif;
+            color: #FFFFFF;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-image: url('images/snow1.png');
+            background-repeat: repeat-x;
+            background-position: bottom center;
+            background-position-y: 400px;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 60px;
+            margin-bottom: 20px;
+
+
+        }
+
+        .start-button {
+            background-color: #ff0000;
+
+            color: #FFF;
+
+            padding: 8px 50px;
+
+            border: none;
+
+            border-radius: 10px 0px 10px 0px;
+
+            font-size: 18px;
+
+            cursor: pointer;
+
+            transition: background-color 0.3s;
+
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+
+
+        }
+
+        .start-button:hover {
+
+            border-radius: 0px 10px 0px 10px;
+        }
+
+
+        @keyframes snowfall {
+            0% {
+                transform: translateY(-10px) rotate(0deg);
+                opacity: 1;
+                top: 0;
+            }
+
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+                top: 100vh;
+            }
+        }
+
+
+        .snowflake {
+            position: absolute;
+            background-color: #FFF;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            animation: snowfall linear infinite;
+        }
+
+        .moon {
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            width: 100px;
+            height: 100px;
+            background-color: white;
+            border-radius: 50%;
+            z-index: 1;
+            box-shadow: 0 0 50px 30px rgba(255, 255, 255, 0.6);
+        }
+
+        .santa-dancing {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: left;
+            z-index: -1;
+        }
+
+        .santa-dancing img {
+            width: auto;
+            /* or you can specify a width */
+            height: auto;
+            /* or you can specify a height */
+        }
+
+        .house-image {
+            position: absolute;
+            right: 0;
+            /* Align to the right */
+            bottom: 0;
+            /* Align to the bottom */
+            z-index: -1;
+            /* Ensure it's behind other elements if needed */
+        }
+
+        .house-image img {
+            width: auto;
+            /* Maintain the original image width or set as needed */
+            height: auto;
+            /* Maintain the original image height or set as needed */
+            max-height: 100vh;
+            /* Ensure it doesn't overflow the viewport height */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="moon"></div>
+    <div id="snow-container"></div>
+
+    <h1>WHO AM I?</h1>
+    <button class="start-button" onclick="startGame()">Start</button>
+
+    <audio id="startAudio" src="begin.mp3" preload="auto"></audio>
+
+    <div class="house-image">
+        <img src="images/house.png" alt="House Image">
+    </div>
+
+    <div class="santa-dancing">
+        <img src="images/santa4.gif" alt="Dancing Santa">
+    </div>
+
+    <script>
+        let clickCount = 0;
+
+        function startGame() {
+            clickCount++;
+
+            // Check the click count
+            if (clickCount === 1) {
+                // On the first click, play the audio
+                const startAudio = document.getElementById('startAudio');
+                startAudio.play();
+
+                // Create snowflakes
+                createSnowflakes();
+            } else if (clickCount === 2) {
+                // On the second click, redirect to the game page
+                window.location.href = "index.html";
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            // Create snowflakes when the page loads
+            createSnowflakes();
+        });
+
+        function createSnowflakes() {
+            const snowContainer = document.getElementById('snow-container');
+
+            // Create a larger number of smaller snowflakes
+            const numSnowflakes = 200; // Increase the number of snowflakes
+            for (let i = 0; i < numSnowflakes; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.classList.add('snowflake');
+
+                // Randomize snowflake size, horizontal position, and animation duration
+                const size = Math.random() * 5 + 2; // Make them smaller
+                const left = Math.random() * window.innerWidth;
+                const duration = Math.random() * 10 + 5; // Adjust duration as needed
+
+                snowflake.style.width = `${size}px`;
+                snowflake.style.height = `${size}px`;
+                snowflake.style.left = `${left}px`;
+                snowflake.style.top = `0`; // Start from the top of the page
+                snowflake.style.animationDuration = `${duration}s`;
+
+                snowContainer.appendChild(snowflake);
+            }
+        }
+
+
+
+    </script>
+</body>
+
+</html>

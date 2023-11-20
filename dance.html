@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Page</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        .video-container {
+            width: 50%;
+            max-width: 350px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin-top: 40px;
+        }
+
+        video {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Center the button container */
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Style the button */
+        #next-button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="video-container">
+        <video controls autoplay>
+            <source src="images/dance.mp4" type="video/mp4">
+        </video>
+    </div>
+    
+    <!-- Centered button container -->
+    <div class="button-container">
+        <button id="next-button">Next</button>
+    </div>
+
+    <script>
+        const nextButton = document.getElementById('next-button');
+        
+        nextButton.addEventListener('click', () => {
+            window.location.href = 'game3.html'; // Change 'merry.html' to your desired destination
+        });
+    </script>
+</body>
+</html>

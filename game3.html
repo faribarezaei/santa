@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the Santa</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        #game-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        #santa-container {
+            position: relative;
+        }
+
+        #santa-image {
+            width: 300px;
+            transition: opacity 1s ease-in-out;
+        }
+
+        #speech-bubble {
+            position: absolute;
+            background-color: #e10f0f;
+            border: 2px solid #000;
+            border-radius: 10px;
+            padding: 10px;
+            width: 200px;
+            top: 40px;
+            left: 320px;
+            font-size: larger;
+
+        }
+
+        #speech-bubble::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border: 10px solid transparent;
+            border-right-color: #fff;
+            left: -20px;
+            top: 30px;
+        }
+
+        #speech-bubble::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border: 8px solid transparent;
+            border-right-color: #d72020;
+            left: -18px;
+            top: 30px;
+        }
+
+
+        #john-doe-image {
+            width: 300px;
+            transition: opacity 1s ease-in-out;
+        }
+
+        #description {
+            margin-top: 20px;
+        }
+
+        #options-container {
+            margin-top: 20px;
+        }
+
+        .option-button {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+
+        #message {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="game-container">
+        <div id="santa-container">
+            <img id="santa-image" src="images/santa1.png" alt="Santa Claus">
+            <div id="speech-bubble">
+                <p>I'm a Canadian singer who started my career as a
+                     teenager. I have a big fan base called "Beliebers.
+                     " I've won Grammy awards, and I'm known for my tattoos.
+                      I'm happily married to Hailey Baldwin and one of my popular 
+                      albums is called "Purpose."</p>
+            </div>
+        </div>
+        <img id="john-doe-image" src="images/john.png" alt="John Doe" style="display: none;">
+        <p id="description">Who is behind the Santa costume?</p>
+        <div id="options-container">
+            <button class="option-button" id="option1"> Ed Sheeran</button>
+            <button class="option-button" id="option2">Shawn Mendes</button>
+            <button class="option-button" id="option3">Justin Bieber</button>
+        </div>
+        <p id="message"></p>
+        <button id="next-button">Next</button>
+    </div>
+
+    <script>
+        const correctOption = 'Justin Bieber'; 
+        const santaImage = document.getElementById('santa-image');
+        const speechBubble = document.getElementById('speech-bubble');
+        const johnDoeImage = document.getElementById('john-doe-image');
+        const optionButtons = document.querySelectorAll('.option-button');
+        const message = document.getElementById('message');
+        const nextButton = document.getElementById('next-button');
+
+        optionButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const selectedOption = button.textContent;
+
+                if (selectedOption === correctOption) {
+                    message.textContent = 'Correct! The Santa Claus is actually John Doe.';
+                    santaImage.style.opacity = '0';
+                    speechBubble.style.opacity = '0'; // Hide speech bubble
+                    setTimeout(() => {
+                        santaImage.style.display = 'none';
+                        speechBubble.style.display = 'none'; // Hide speech bubble
+                        johnDoeImage.style.display = 'block';
+                        johnDoeImage.style.opacity = '1';
+                    }, 1000); // Wait for the fade-out transition to complete
+                    disableOptionButtons();
+                } else {
+                    message.textContent = 'Sorry, that\'s not correct. Try again.';
+                    button.disabled = true;
+                }
+            });
+        });
+
+        function disableOptionButtons() {
+            optionButtons.forEach(button => {
+                button.disabled = true;
+            });
+        }
+
+        nextButton.addEventListener('click', () => {
+    window.location.href ='dance.html'; // Change 'merry.html' to your desired destination
+});
+    </script>
+
+</body>
+
+</html>
